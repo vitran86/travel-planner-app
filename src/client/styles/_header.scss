@@ -1,0 +1,81 @@
+.headline {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px 10px;
+  font-size: 2.5em;
+  font-weight: 400;
+  max-height: 100px;
+  max-width: 250px;
+  font-family: $font3;
+  text-align: center;
+  color: $color3;
+  border: 1px solid $color2;
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+}
+.headline span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+.headline span:nth-child(1) {
+  transform: rotate(0deg);
+  top: -5px;
+  left: -100px;
+  width: 200px;
+}
+
+.headline span:nth-child(2) {
+  transform: rotate(270deg);
+  left: -7px;
+  top: 30px;
+  width: 60px;
+}
+
+.headline span:nth-child(3) {
+  transform: rotate(180deg);
+  top: 5px;
+  left: 100px;
+  width: 200px;
+}
+
+.headline span:nth-child(4) {
+  transform: rotate(90deg);
+  left: 145px;
+  top: -30px;
+  width: 60px;
+  animation-delay: 4ms;
+}
+
+.headline span:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient($color1, $color3);
+  animation: animate 2s linear running infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  50% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  50.1% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+}

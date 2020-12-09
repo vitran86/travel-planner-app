@@ -1,0 +1,351 @@
+.hero-box {
+  background: url("../images/pic/whitebackground.jpg");
+  max-width: 95%;
+  padding: 5px 5px;
+  margin-top: 1.5em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: rgba(225, 225, 225, 0.2);
+  border-radius: 25px 0 25px 0;
+  backdrop-filter: blur(290px);
+  max-width: 95%;
+  padding: 5px 5px;
+}
+
+.hero-box.active {
+  opacity: 1;
+}
+
+.container {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+h3 {
+  text-align: center;
+  line-height: 1.8em;
+  border-top: 1px solid black;
+  border-bottom: 3px double black;
+  font-family: $font3;
+  margin-bottom: 6px;
+}
+// display trip header
+#date {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.location {
+  padding: 5px 5px;
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: $font3;
+  font-size: 1.5em;
+  background: linear-gradient(white, $color1 70%);
+  border-radius: 5px;
+}
+
+// picture of arrival city
+
+#city-pic {
+  height: 480px;
+  width: 100%;
+  position: relative;
+}
+
+#city-pic::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: black;
+  opacity: 0.2;
+}
+
+// country card
+
+%card-Btn {
+  position: absolute;
+  border: none;
+  background: linear-gradient(45deg, $color4, white);
+  cursor: pointer;
+  z-index: 10;
+}
+
+%card-info {
+  padding: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 480px;
+  width: 100%;
+  background-color: $color3;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.country-card {
+  width: 100%;
+  position: relative;
+
+  span {
+    color: black;
+    font-weight: 600;
+  }
+
+  // country info
+  .country-info-btn {
+    @extend %card-Btn;
+    top: 320px;
+    left: 50px;
+    &.clicked {
+      background-color: $color2;
+      transform: translate(75%, -100%);
+      transition: transfrom 2s ease;
+    }
+  }
+  .country-info {
+    @extend %card-info;
+  }
+
+  // covid info
+  .covid-info-btn {
+    @extend %card-Btn;
+    top: 320px;
+    left: 200px;
+    &.clicked {
+      background-color: $color2;
+      transform: translate(-50%, -200%);
+      transition: transfrom 2s ease;
+    }
+  }
+
+  .covid19-info {
+    @extend %card-info;
+  }
+
+  // trip count down
+  .count-down-btn {
+    @extend %card-Btn;
+    top: 370px;
+    left: 50px;
+    &.clicked {
+      background-color: $color2;
+      transform: translate(75%, -300%);
+      transition: transfrom 2s ease;
+    }
+  }
+
+  .day-count {
+    @extend %card-info;
+    padding-top: 150px;
+  }
+
+  // weather forecast
+  #weather-detail {
+    @extend %card-Btn;
+    width: 170px;
+    top: 370px;
+    left: 200px;
+    &.clicked {
+      background-color: $color2;
+      transform: translate(-50%, 200%);
+      transition: transfrom 2s ease;
+    }
+  }
+
+  .weather-forecast {
+    @extend %card-info;
+    padding: 2px;
+    font-size: 1.15em;
+  }
+  //flight info
+  .get-flight-btn {
+    @extend %card-Btn;
+    top: 420px;
+    left: 130px;
+    &.clicked {
+      background-color: $color2;
+    }
+  }
+
+  .flight-info {
+    @extend %card-info;
+    width: 100%;
+    padding: 2px;
+    font-size: 1em;
+
+    h3 {
+      font-size: 1.5em;
+    }
+
+    p {
+      font-size: 0.9em;
+    }
+    ul {
+      border-top: 1px double black;
+      color: black;
+      overflow-y: scroll;
+      max-height: 350px;
+    }
+    .departure-info,
+    .arrival-info,
+    .flight-detail {
+      margin-top: 12px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .flight-detail {
+      .airline {
+        max-width: 200px;
+      }
+      .flight-number {
+        max-width: 80px;
+      }
+      .scheduled-time {
+        max-width: 100px;
+      }
+    }
+    .cant-get-flight {
+      font-weight: 600;
+      color: black;
+    }
+  }
+}
+
+.country-card.active1 {
+  .country-info.active {
+    opacity: 0.8;
+  }
+
+  .covid-info-btn,
+  .count-down-btn,
+  #weather-detail,
+  .get-flight-btn {
+    display: none;
+  }
+}
+
+.country-card.active2 {
+  .covid19-info.active {
+    opacity: 0.8;
+  }
+
+  .country-info-btn,
+  .count-down-btn,
+  #weather-detail,
+  .get-flight-btn {
+    display: none;
+  }
+
+  .weather-forecast,
+  .flight-info {
+    display: none;
+  }
+}
+
+.country-card.active3 {
+  .day-count.active {
+    opacity: 0.8;
+  }
+
+  .country-info-btn,
+  .covid-info-btn,
+  #weather-detail,
+  .get-flight-btn {
+    display: none;
+  }
+}
+
+.country-card.active4 {
+  .weather-forecast.active {
+    opacity: 0.8;
+  }
+
+  .country-info-btn,
+  .covid-info-btn,
+  .count-down-btn,
+  .get-flight-btn {
+    display: none;
+  }
+  .flight-info {
+    display: none;
+  }
+}
+
+.country-card.active5 {
+  .flight-info.active {
+    opacity: 0.8;
+  }
+
+  .country-info-btn,
+  .covid-info-btn,
+  .count-down-btn,
+  #weather-detail {
+    display: none;
+  }
+}
+
+// for weather forecast table display
+
+#weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 350px;
+  li {
+    color: black;
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 0.8em;
+    font-weight: 600;
+  }
+}
+
+.forecast-icon {
+  height: 35px;
+  width: 35px;
+}
+
+.forecart-description {
+  max-width: 50px;
+}
+
+// add note, packing list
+#add-note,
+#add-packing {
+  border: none;
+  background: linear-gradient(45deg, $color4, white);
+  cursor: pointer;
+  z-index: 10;
+}
+
+// save-btn & remove-btn
+.end-card-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

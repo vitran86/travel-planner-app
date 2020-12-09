@@ -1,0 +1,34 @@
+.info-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (min-width: 600px) {
+}
+
+@media screen and (min-width: 960px) {
+  .info-box {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .date-input,
+  .city-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+  }
+
+  .city-input {
+    min-width: 600px;
+  }
+
+  #add-btn {
+    justify-content: center;
+    align-self: center;
+  }
+}
