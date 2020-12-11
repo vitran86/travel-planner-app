@@ -1,4 +1,4 @@
-const countryCard = document.querySelector(".country-card");
+/* const countryCard = document.querySelector(".country-card");
 
 // handle button of country info
 const countryInfoBtnClick = function () {
@@ -122,3 +122,4 @@ export {
   weatherForecastBtnClick,
   flightBtnClick,
 };
+ */

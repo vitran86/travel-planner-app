@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { displaySavedTrips } from "./displaySavedTrips";
 
 // Create a new date instance dynamically with JS
 function takeDate(input) {
@@ -23,135 +24,6 @@ function takeDate(input) {
   }, ${d.getFullYear()}`);
 }
 
-// create template for each trip
-function getTripTemplate(trip) {
-  return `<div class="hero-box">
-      <div class="container">
-        <div id="location">
-          <span id="city">Trip to: ${trip.arrCityName}</span> , <span id="countryName"></span>
-          <div id="start-date"></div>
-          <div id="end-date"></div>
-        </div>
-        <div class="country-card">
-          <img id="city-pic"/>
-          <button type="button" class="country-info-btn">
-            Country Info
-          </button>
-  
-          <div class="country-info">
-            <p>
-              <span class="country-name1"></span>, a country which has
-              <span class="area"></span> million square kilometers (km²)
-              land area with population of
-              <span class="population"></span> million people. Their capital
-              is <span class="capital"></span>. Main language here is
-              <span class="language"></span>. Currency is
-              <span class="currency-code"></span>(<span
-                class="currency-name"
-              ></span
-              >).
-            </p>
-          </div>
-          <button type="button" class="covid-info-btn">
-            Covid-19 Info
-          </button>
-          <div class="covid19-info">
-            <p>
-              <span class="country-name2"></span> is a country has
-              <span class="covid-level"></span> level of COVID-19.(Currently
-              active case is <span class="active-case"></span>. Last updated
-              is at <span class="last-update"></span>). Get more specific
-              Infomation
-              <a href="https://www.google.com/">here</a>
-              <!-- "https://travel.state.gov/content/travel/en/traveladvisories/COVID-19-Country-Specific-Information.html" -->
-            </p>
-          </div>
-          <button type="button" class="count-down-btn">
-            Trip count down
-          </button>
-          <div class="day-count">
-            <p>
-              Trip to <span id="tripName"></span> is
-              <span id="calc-day"></span> days away.
-            </p>
-          </div>
-          <button type="submit" id="weather-detail">
-            Get weather Forecast
-          </button>
-          <br />
-          <div class="weather-forecast">
-            <h3>Weather forecast in next 16 days</h3>
-            <ul id="weather"></ul>
-          </div>
-          <button type="submit" class="get-flight-btn">Flight Info</button>
-          <div class="flight-info">
-            <h3>Direct flight info</h3>
-            <p>(auto detected by nearest airport)</p>
-            <div class="departure-info">
-              <div>
-                From <span class="departure-airport-code">SGN</span>(
-                <span class="departure-airport-name">TSN AIRPORT</span>)
-              </div>
-              <div class="departure-country"></div>
-            </div>
-            <div class="arrival-info">
-              <div>
-                To <span class="arrival-airport-code">NRT</span>(
-                <span class="arrival-airport-name">NARITA AIRPORT</span>)
-              </div>
-              <div class="arrival-country"></div>
-            </div>
-  
-            <ul id="flight">
-              <li class="flight-detail">
-                <div class="airline"></div>
-                <div class="flight-number"></div>
-                <div class="scheduled-time"></div>
-              </li>
-              <div class="cant-get-flight"></div>
-            </ul>
-          </div>
-        </div>
-  
-        <div>
-          <button type="submit" id="add-note">Add Note</button>
-          <br />
-          <div class="note">
-            <textarea
-              id="note"
-              rows="10"
-              cols="50"
-              placeholder="Add note here..."
-            ></textarea>
-          </div>
-        </div>
-        <div class="end-card-btn">
-          <button type="submit" id="save-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-            >
-              <path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" />
-            </svg>
-            Save trip
-          </button>
-          <button type="submit" id="delete-btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-            >
-              <path d="M0 10h24v4h-24z" />
-            </svg>
-            Remove trip
-          </button>
-        </div>
-      </div>
-    </div>`;
-}
 // create function to convert temperature from K to F
 function convertToFahrenheit(tempC) {
   const tempF = tempC * 1.8 + 32;
@@ -248,7 +120,6 @@ function getCovidInfo(data) {
 
 function analysingCovidData(covidData, population) {
   const rate = ((covidData / population) * 100).toFixed(2);
-  console.log(rate);
   let level = "";
 
   if (rate >= 3) {
@@ -278,22 +149,24 @@ function getAirportInfo(data) {
   arrCountry.innerHTML = data.airportCodeByArrCity.country_name;
 }
 
-function getFightInfo(depAirportCode, flights) {
+function getFlightInfo(depAirportCode, flights) {
   const flightsFiltered = flights.filter((flight) => {
     const depAirportIATA = flight.depIATA;
     return depAirportCode === depAirportIATA;
   });
-  console.log(flightsFiltered.length);
+
   if (flightsFiltered.length > 0) {
+    const flightItems = document.createElement("ul");
+    flightItems.setAttribute("id", "flight");
     flightsFiltered.forEach((filteredFlight) => {
-      const flight = document.querySelector("#flight");
       const flightDetail = displayFlightInfo(filteredFlight);
-      flight.append(flightDetail);
+      flightItems.append(flightDetail);
     });
+    return flightItems;
   } else if (flightsFiltered.length === 0) {
-    const resultMsg = document.querySelector(".cant-get-flight");
-    resultMsg.innerHTML =
-      " Can't find any direct flight from these airports right now, please try again later!";
+    const resultMsg = document.createElement("div");
+    resultMsg.classList.add("cant-get-flight");
+    resultMsg.innerHTML = " Can't find any direct flight for these airports!";
     return resultMsg;
   }
 }
@@ -331,41 +204,79 @@ const getSavedTrips = () => {
 };
 
 // save trip to big Data Trips
-const saveTrip = (trip) => {
+const saveTrip = (e, trip) => {
   const trips = getSavedTrips();
-  const id = uuidv4();
+  const id = e.target.parentElement.id;
+  /* const tripTo = document.querySelector(".trip-to").innerText;
+  const depDate = document.getElementById("start-date").innerText;
+  const arrDate = document.getElementById("end-date").innerText;
+  const tripImg = trip[2];
+  const countryInfo = document.querySelector(".country-info").innerText;
+  const covidInfo = document.querySelector(".covid19-info").innerText;
+  const weatherForecast = document.getElementById("weather").innerHTML;
+  const depAirport = document.querySelector(".departure-info").innerText;
+  const arrAirport = document.querySelector(".arrival-info").innerText;
+  const flightInfo = document.querySelector("#flight").innerHTML; */
+  const note = document.querySelector("#note").value;
+
   trips.push({
     id,
     trip,
+    note,
   });
 
   console.log(trips);
   localStorage.setItem("trips", JSON.stringify(trips));
+  displaySavedTrips();
 };
 
-/// Remove a trip from the list
-const removeTrip = (tripId) => {
+// Remove a trip from the list
+function removeSavedTrip(id) {
   const trips = getSavedTrips();
-  const tripIndex = trips.findIndex(function (trip) {
-    return trip.id === tripId;
+  const tripIndex = trips.findIndex((trip) => {
+    return trip.id === id;
   });
 
   if (tripIndex > -1) {
     trips.splice(tripIndex, 1);
   }
-  saveTrip(trips);
+  console.log(trips);
+}
+
+// Remove all trips from the list
+const reset = () => {
+  localStorage.clear();
 };
+
+const saveEditedNote = (idUpdatedNote, updatedNote) => {
+  const trips = getSavedTrips();
+  const updatedTrips = trips.map((trip) => {
+    if (trip.id === idUpdatedNote) {
+      return {
+        ...trip,
+        note: updatedNote,
+      };
+    } else {
+      return { ...trip };
+    }
+  });
+  console.log(updatedTrips);
+  localStorage.setItem("trips", JSON.stringify(updatedTrips));
+};
+
+// filter trips
 
 export {
   takeDate,
-  getTripTemplate,
   generateWeatherForecast,
   getCountryInfo,
   getCovidInfo,
   analysingCovidData,
   getAirportInfo,
-  getFightInfo,
+  getFlightInfo,
   getSavedTrips,
   saveTrip,
-  removeTrip,
+  removeSavedTrip,
+  reset,
+  saveEditedNote,
 };

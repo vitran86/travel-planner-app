@@ -1,16 +1,16 @@
 import { setUpEvent } from "../client/js/app.js";
-import {
+/* import {
   countryInfoBtnClick,
   covidBtnClick,
   tripCountDownBtnClick,
   weatherForecastBtnClick,
   flightBtnClick,
-} from "../client/js/handleBtnClick.js";
+} from "../client/js/handleBtnClick.js"; */
 import "./styles/_main.scss";
 
 setUpEvent();
-countryInfoBtnClick();
+/* countryInfoBtnClick();
 covidBtnClick();
 tripCountDownBtnClick();
 weatherForecastBtnClick();
-flightBtnClick();
+flightBtnClick(); */

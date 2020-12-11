@@ -58,13 +58,19 @@
           </svg>
           Add trip
         </button>
+        <button type="submit" id="reset-btn">
+          <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.458 9.012c-.297.947-.458 1.955-.458 3 0 5.52 4.481 10 10 10 5.52 0 10-4.48 10-10 0-5.519-4.48-10-10-10-2.121 0-4.083.668-5.703 1.796l1.703 2.204h-6.58l1.935-6.012 1.718 2.223c1.958-1.389 4.346-2.211 6.927-2.211 6.623 0 12 5.377 12 12s-5.377 11.988-12 11.988-12-5.365-12-11.988c0-1.036.132-2.041.379-3h2.079zm10.35-3.012c.292.821.375 1.346 1.01 1.609.637.264 1.073-.052 1.854-.423l1.142 1.142c-.373.787-.687 1.218-.423 1.854.262.634.784.716 1.609 1.009v1.617c-.816.29-1.347.375-1.61 1.01-.264.636.052 1.071.424 1.853l-1.142 1.142c-.79-.375-1.219-.687-1.85-.424-.639.265-.723.793-1.014 1.611h-1.616c-.292-.821-.375-1.347-1.01-1.61-.637-.264-1.072.052-1.854.423l-1.142-1.142c.366-.771.689-1.212.423-1.854-.263-.635-.793-.719-1.609-1.009v-1.617c.817-.29 1.346-.373 1.609-1.009.264-.637-.051-1.07-.423-1.854l1.142-1.142c.788.374 1.218.687 1.854.423.635-.263.719-.792 1.01-1.609h1.616zm-.808 8c-1.105 0-2-.896-2-2 0-1.105.895-2.001 2-2.001 1.104 0 2 .896 2 2.001 0 1.104-.896 2-2 2z"/></svg>
+          Reset
+        </button>
       </div>
 
       <div class="app-body">
-       <div class="hero-box">
+        <!-- <div class="hero-box">
           <div class="container">
             <div class="location">
-              <span id="city"></span> , <span id="countryName"></span>
+              <div class="trip-to">
+                <span id="city"></span> , <span id="countryName"></span>
+              </div>
               <div id="start-date"></div>
               <div id="end-date"></div>
             </div>
@@ -109,12 +115,13 @@
                   active case is <span class="active-case"></span>. Last updated
                   is at <span class="last-update"></span>). Get more specific
                   Infomation
-                  <a href="https://travel.state.gov/content/travel/en/traveladvisories/COVID-19-Country-Specific-Information.html">here</a>
-             
+                  <a
+                    href="https://travel.state.gov/content/travel/en/traveladvisories/COVID-19-Country-Specific-Information.html"
+                    >here</a
+                  >
                 </p>
               </div>
-              
-              
+
               <button type="submit" id="weather-detail">
                 Get weather Forecast
               </button>
@@ -142,25 +149,100 @@
                   <div class="arrival-country"></div>
                 </div>
 
-                <ul id="flight">
-                  <li class="flight-detail">
-                    <div class="airline"></div>
-
-                    <div class="flight-number"></div>
-                    <div class="scheduled-time"></div>
-                  </li>
-                  <div class="cant-get-flight"></div>
-                </ul>
+                <ul id="flight"></ul>
               </div>
-              
             </div>
 
             <div>
               <button type="submit" id="add-note">Add Note</button>
-              <br />
+              <textarea
+                id="note"
+                rows="10"
+                cols="50"
+                placeholder="Add note here..."
+              ></textarea>
+            </div>
+            <div class="end-card-btn">
+              <button type="submit" id="save-btn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" />
+                </svg>
+                Save trip
+              </button>
+              <button type="submit" id="delete-btn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M0 10h24v4h-24z" />
+                </svg>
+                Remove trip
+              </button>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- trip template 
+        <div class="hero-box">
+          <div class="container">
+            <div class="location">
+              <div class="trip-to"></div>
+              <div id="start-date"></div>
+              <div id="end-date"></div>
+            </div>
+            <div class="country-card">
+              <img id="city-pic" />
+              <button type="button" class="country-info-btn">
+                Country Info
+              </button>
+
+              <div class="country-info"></div>
+
+              <button type="button" class="count-down-btn">
+                Trip count down
+              </button>
+              <div class="day-count">
+                <p>
+                  Trip to <span id="tripName"></span> is
+                  <span id="calc-day"></span> days away.
+                </p>
+              </div>
+
+              <button type="button" class="covid-info-btn">
+                Covid-19 Info
+              </button>
+              <div class="covid19-info"></div>
+
+              <button type="submit" id="weather-detail">
+                Get weather Forecast
+              </button>
+              <div class="weather-forecast">
+                <h3>Weather forecast in next 16 days</h3>
+                <ul id="weather"></ul>
+              </div>
+
+              <button type="submit" class="get-flight-btn">Flight Info</button>
+              <div class="flight-info">
+                <h3>Direct flight info</h3>
+                <p>(auto detected by nearest airport)</p>
+                <div class="departure-info"></div>
+                <div class="arrival-info"></div>
+                <ul id="flight"></ul>
+              </div>
+            </div>
+
+            <div>
+              <button type="submit" id="add-note">Add Note</button>
               <div class="note">
                 <textarea
-                  id="note"
+                  class="note"
                   rows="10"
                   cols="50"
                   placeholder="Add note here..."
@@ -192,10 +274,8 @@
               </button>
             </div>
           </div>
-        </div>
-    
-</div>
+        </div>-->
+      </div>
     </div>
-    
   </body>
 </html>

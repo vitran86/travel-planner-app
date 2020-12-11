@@ -1,18 +1,16 @@
 import moment from "moment";
 import {
   takeDate,
-  getTripTemplate,
   generateWeatherForecast,
   getCountryInfo,
   getCovidInfo,
   analysingCovidData,
   getAirportInfo,
-  getFightInfo,
+  getFlightInfo,
 } from "./app-function";
 
 // create function to update UI
 function displayTripInfo(data) {
-  /* const heroBox = getTripTemplate(); */
   // update background of trip by arrival city picture
   let background = document.querySelector(".hero-box");
   background.style.background = `url(${data[2].pic})`;
@@ -34,7 +32,7 @@ function displayTripInfo(data) {
   const arrivalDate = document.querySelector("#arrival-date").value;
   dateEndEL.textContent = `Arrival: ${takeDate(arrivalDate)}`;
 
-  // trip count down
+  // trip count down ----> ok
   let daysLeftEL = document.getElementById("calc-day");
   const startDay = moment(new Date(departDate));
   const today = moment(new Date());
@@ -72,7 +70,7 @@ function displayTripInfo(data) {
     //get Flight info
     getAirportInfo(data[5]);
     const depAirportCode = data[5].airportCodeByDepCity.code;
-    getFightInfo(depAirportCode, data[6]);
+    getFlightInfo(depAirportCode, data[6]);
   };
   getInfo(data);
   /* return heroBox; */

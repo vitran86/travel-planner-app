@@ -17,15 +17,13 @@
   backdrop-filter: blur(290px);
   max-width: 95%;
   padding: 5px 5px;
+  font-size: 1.2em;
+  font-weight: 400;
+  margin: 0 auto;
 }
 
 .hero-box.active {
   opacity: 1;
-}
-
-.container {
-  font-size: 1.2em;
-  font-weight: 400;
 }
 
 h3 {
@@ -36,11 +34,11 @@ h3 {
   font-family: $font3;
   margin-bottom: 6px;
 }
+
+/* textarea {
+  width: 100%;
+} */
 // display trip header
-#date {
-  text-align: center;
-  margin-top: 10px;
-}
 
 .location {
   padding: 5px 5px;
@@ -55,13 +53,15 @@ h3 {
 
 // picture of arrival city
 
-#city-pic {
+#city-pic,
+.city-pic {
   height: 480px;
-  width: 100%;
+  width: 380px;
   position: relative;
 }
 
-#city-pic::after {
+#city-pic::after,
+.city-pic::after {
   position: absolute;
   content: "";
   width: 100%;

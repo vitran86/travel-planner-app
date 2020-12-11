@@ -104,6 +104,9 @@ app.post("/addTrip", async (req, res) => {
   /* const flightInfo = await getFlightInfo(airportCodeByArrCity.code);
   consolidatedData.push(flightInfo); */
 
+  const flightInfo = [];
+  consolidatedData.push(flightInfo);
+
   res.send(consolidatedData);
 
   try {
