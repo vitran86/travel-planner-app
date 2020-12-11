@@ -1,6 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-import { displaySavedTrips } from "./displaySavedTrips";
-
 // Create a new date instance dynamically with JS
 function takeDate(input) {
   let newDate = "";
@@ -227,7 +224,6 @@ const saveTrip = (e, trip) => {
 
   console.log(trips);
   localStorage.setItem("trips", JSON.stringify(trips));
-  displaySavedTrips();
 };
 
 // Remove a trip from the list

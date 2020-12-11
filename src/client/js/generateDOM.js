@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-import { getSavedTrips, removeSavedTrip, saveTrip } from "./app-function";
-import { trialDisplayTripInfo } from "./trial-updateUI";
+import { getSavedTrips, removeSavedTrip } from "./app-function";
+import { trialDisplayTripInfo } from "./updateUI";
 
 // create function generate DOM for saved trips
 
@@ -275,7 +275,6 @@ const generateDOM = (data) => {
   saveBtn.setAttribute("type", "button");
   saveBtn.textContent = `Save trip`;
   saveBtn.addEventListener("click", (e) => {
-    /* localStorage.clear(); */
     console.log(`save btn clicked`);
     const trips = getSavedTrips();
     const id = e.target.parentElement.id;
@@ -289,7 +288,7 @@ const generateDOM = (data) => {
   });
   endCard.appendChild(saveBtn);
 
-  /* const deleteBtn = document.createElement("button");
+  const deleteBtn = document.createElement("button");
   deleteBtn.setAttribute("id", "delete-btn");
   deleteBtn.setAttribute("type", "button");
   deleteBtn.textContent = `Remove trip`;
@@ -299,7 +298,7 @@ const generateDOM = (data) => {
     const tripId = e.target.parentElement.id;
     removeSavedTrip(tripId);
   });
-  endCard.appendChild(deleteBtn); */
+  endCard.appendChild(deleteBtn);
 
   return heroBox;
 };
