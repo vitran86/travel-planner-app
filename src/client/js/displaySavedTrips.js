@@ -1,5 +1,11 @@
+import moment from "moment";
 import { trialDisplayTripInfo } from "./updateUI";
-import { getSavedTrips, removeSavedTrip, saveEditedNote } from "./app-function";
+import {
+  takeDate,
+  getSavedTrips,
+  removeSavedTrip,
+  saveEditedNote,
+} from "./app-function";
 
 function displaySavedTrips() {
   const trips = getSavedTrips();
@@ -10,7 +16,6 @@ function displaySavedTrips() {
   });
 }
 
-const trips = getSavedTrips();
 const generateDOMSavedTripsv2 = (trip) => {
   const obj = trialDisplayTripInfo(trip.data);
 
@@ -36,14 +41,14 @@ const generateDOMSavedTripsv2 = (trip) => {
 
   const startDate = document.createElement("div");
   startDate.classList.add("start-date");
-  startDate.innerHTML = `${obj.dateStartEL}`;
+  startDate.innerHTML = `Departing: ${takeDate(trip.depDate)}`;
   location.appendChild(startDate);
 
   const endDate = document.createElement("div");
   endDate.classList.add("end-date");
-  endDate.innerHTML = `${obj.dateEndEL}`;
+  endDate.innerHTML = `Arrival: ${takeDate(trip.arrDate)}`;
   location.appendChild(endDate);
-
+  console.log(location);
   // country card
   const card = document.createElement("div");
   card.classList.add("country-card");
@@ -55,6 +60,7 @@ const generateDOMSavedTripsv2 = (trip) => {
   cardImg.setAttribute("src", `${obj.cardImgEL}`);
   cardImg.setAttribute("alt", `${obj.description}`);
   card.appendChild(cardImg);
+  console.log(cardImg);
 
   // ** country info **//
   const countryInfo = document.createElement("div");
@@ -67,6 +73,7 @@ const generateDOMSavedTripsv2 = (trip) => {
     ${obj.languageEL}. Currency is
     ${obj.currencyCodeEL}(${obj.currencyNameEL})`;
   card.appendChild(countryInfo);
+  console.log(countryInfo);
 
   const countryInfoBtn = document.createElement("button");
   countryInfoBtn.classList.add("country-info-btn");
@@ -98,13 +105,10 @@ const generateDOMSavedTripsv2 = (trip) => {
   covidInfo.innerHTML = `${obj.countryNameEL} is a country has
     ${obj.covidLevel} level of COVID-19.(Currently
     active case is ${obj.activeCases}. Last updated
-    is at ${obj.lastUpdate}. Get more specific
-    Infomation
-    <a
-      href="https://travel.state.gov/content/travel/en/traveladvisories/COVID-19-Country-Specific-Information.html"
-      >here</a
-    >`;
+    is at ${obj.lastUpdate}.`;
+
   card.appendChild(covidInfo);
+  console.log(covidInfo);
 
   const covidInfoBtn = document.createElement("button");
   covidInfoBtn.classList.add("covid-info-btn");
@@ -133,8 +137,12 @@ const generateDOMSavedTripsv2 = (trip) => {
   // ** trip count down ** //
   const dayCount = document.createElement("div");
   dayCount.classList.add("day-count");
-  dayCount.innerHTML = `${obj.arrCityEL} is ${obj.daysLeftEL} days away.`;
+  const startDay = moment(new Date(trip.depDate));
+  const today = moment(new Date());
+  let daysLeftEL = startDay.diff(today, "day") + 1;
+  dayCount.innerHTML = `${obj.arrCityEL} is ${daysLeftEL} days away.`;
   card.appendChild(dayCount);
+  console.log(dayCount);
 
   const tripCountDownBtn = document.createElement("button");
   tripCountDownBtn.classList.add("count-down-btn");
@@ -166,8 +174,10 @@ const generateDOMSavedTripsv2 = (trip) => {
   const title = document.createElement("h3");
   title.textContent = `Weather forecast in next 16 days`;
   weatherForecast.appendChild(title);
+
   weatherForecast.append(obj.generatedWeatherItems);
-  card.appendChild(weatherForecast);
+  card.append(weatherForecast);
+  console.log(weatherForecast);
 
   const weatherForecastBtn = document.createElement("button");
   weatherForecastBtn.setAttribute("id", "weather-detail");
@@ -219,7 +229,8 @@ const generateDOMSavedTripsv2 = (trip) => {
   flightInfo.appendChild(arrInfo);
 
   flightInfo.append(obj.generatedFlightItems);
-  card.appendChild(flightInfo);
+  card.append(flightInfo);
+  console.log(flightInfo);
 
   const flightBtn = document.createElement("button");
   flightBtn.classList.add("get-flight-btn");
@@ -260,7 +271,7 @@ const generateDOMSavedTripsv2 = (trip) => {
   note.setAttribute("cols", "50");
   note.setAttribute("disabled", "true");
   note.innerHTML = trip.note;
-  noteContainer.appendChild(note);
+  noteContainer.append(note);
 
   // set event listener for edit note btn
   addNoteBtn.addEventListener("click", (e) => {
@@ -324,7 +335,11 @@ const generateDOMSavedTripsv2 = (trip) => {
   deleteBtn.textContent = `Remove trip`;
   deleteBtn.addEventListener("click", (e) => {
     console.log(`remove trip clicked`);
-    console.log(e.target.parentElement.id);
+    // manage button clicked
+    e.target.textContent = "Deleting...";
+    setTimeout(function () {
+      deleteBtn.setAttribute("disabled", "true");
+    }, 1000);
     const tripId = e.target.parentElement.id;
     removeSavedTrip(tripId);
   });

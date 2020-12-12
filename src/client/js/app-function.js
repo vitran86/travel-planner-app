@@ -1,3 +1,5 @@
+import { displaySavedTrips } from "./displaySavedTrips";
+
 // Create a new date instance dynamically with JS
 function takeDate(input) {
   let newDate = "";
@@ -27,22 +29,7 @@ function convertToFahrenheit(tempC) {
   return `${Math.round(tempF)} °F`;
 }
 
-// create function to generate weather forecast for the trip (structure looks like below) dynamically
-/* 
-  <div class="weather-forecast">
-    <h3>Weather forecast in next 16 days</h3>
-    <ul id="weather">
-      <li class=weather-items>
-        <div class="forecast-date">Dec 24,2020</div>
-        <img class="forecast-icon" src="/static/weather-icon-png/a01d.png" width="50" height="50">
-        <div class="forecast-minTemp">L: 7 C</div>
-        <div class="forecast-maxTemp">H: 17 C</div>
-        <div class="forecart-description">broken cloudy</div>
-      </li>
-    </ul>
-  </div>
-   */
-
+// create function to generate datof weather forecast
 function generateWeatherForecast(data) {
   const newForecast = document.createElement("li");
   newForecast.classList.add("weather-items");
@@ -82,39 +69,7 @@ function generateWeatherForecast(data) {
   return newForecast;
 }
 
-// create functions to get related data to arrival country (including : basic info, covid & flight)
-function getCountryInfo(data) {
-  const areaArrCountry = document.querySelector(".area");
-  areaArrCountry.innerHTML = (data.countryInfo[0].area / 100000).toFixed(2);
-
-  const populationArrCountry = document.querySelector(".population");
-  populationArrCountry.innerHTML = (
-    data.countryInfo[0].population / 1000000
-  ).toFixed(2);
-
-  const capitalArrCountry = document.querySelector(".capital");
-  capitalArrCountry.innerHTML = data.countryInfo[0].capital;
-
-  const languageArrCountry = document.querySelector(".language");
-  languageArrCountry.innerHTML = data.countryInfo[0].languageName;
-
-  const currencyCodeArrCountry = document.querySelector(".currency-code");
-  currencyCodeArrCountry.innerHTML = data.countryInfo[0].currencyCode;
-
-  const currencyNameArrCountry = document.querySelector(".currency-name");
-  currencyNameArrCountry.innerHTML = data.countryInfo[0].currencyName;
-}
-
-function getCovidInfo(data) {
-  const covidCase = document.querySelector(".active-case");
-  covidCase.innerHTML = data.covid19.cases.toFixed(0);
-
-  const lastUpdate = document.querySelector(".last-update");
-  lastUpdate.innerHTML = new Date(
-    data.covid19.last_update
-  ).toLocaleDateString();
-}
-
+// create function analysing covid data
 function analysingCovidData(covidData, population) {
   const rate = ((covidData / population) * 100).toFixed(2);
   let level = "";
@@ -130,22 +85,7 @@ function analysingCovidData(covidData, population) {
   return level;
 }
 
-function getAirportInfo(data) {
-  const depAirportCode = document.querySelector(".departure-airport-code");
-  depAirportCode.innerHTML = data.airportCodeByDepCity.code;
-  const depAirportName = document.querySelector(".departure-airport-name");
-  depAirportName.innerHTML = data.airportCodeByDepCity.name;
-  const depCountry = document.querySelector(".departure-country");
-  depCountry.innerHTML = data.airportCodeByDepCity.country_name;
-
-  const arrAirportCode = document.querySelector(".arrival-airport-code");
-  arrAirportCode.innerHTML = data.airportCodeByArrCity.code;
-  const arrAirportName = document.querySelector(".arrival-airport-name");
-  arrAirportName.innerHTML = data.airportCodeByArrCity.name;
-  const arrCountry = document.querySelector(".arrival-country");
-  arrCountry.innerHTML = data.airportCodeByArrCity.country_name;
-}
-
+// create function to get flight data
 function getFlightInfo(depAirportCode, flights) {
   const flightsFiltered = flights.filter((flight) => {
     const depAirportIATA = flight.depIATA;
@@ -168,6 +108,7 @@ function getFlightInfo(depAirportCode, flights) {
   }
 }
 
+// create function to display flight data (if any)
 function displayFlightInfo(data) {
   const newFlight = document.createElement("li");
   newFlight.classList.add("flight-detail");
@@ -201,27 +142,8 @@ const getSavedTrips = () => {
 };
 
 // save trip to big Data Trips
-const saveTrip = (e, trip) => {
+const saveTrip = () => {
   const trips = getSavedTrips();
-  const id = e.target.parentElement.id;
-  /* const tripTo = document.querySelector(".trip-to").innerText;
-  const depDate = document.getElementById("start-date").innerText;
-  const arrDate = document.getElementById("end-date").innerText;
-  const tripImg = trip[2];
-  const countryInfo = document.querySelector(".country-info").innerText;
-  const covidInfo = document.querySelector(".covid19-info").innerText;
-  const weatherForecast = document.getElementById("weather").innerHTML;
-  const depAirport = document.querySelector(".departure-info").innerText;
-  const arrAirport = document.querySelector(".arrival-info").innerText;
-  const flightInfo = document.querySelector("#flight").innerHTML; */
-  const note = document.querySelector("#note").value;
-
-  trips.push({
-    id,
-    trip,
-    note,
-  });
-
   console.log(trips);
   localStorage.setItem("trips", JSON.stringify(trips));
 };
@@ -237,6 +159,8 @@ function removeSavedTrip(id) {
     trips.splice(tripIndex, 1);
   }
   console.log(trips);
+  localStorage.setItem("trips", JSON.stringify(trips));
+  reload();
 }
 
 // Remove all trips from the list
@@ -244,6 +168,14 @@ const reset = () => {
   localStorage.clear();
 };
 
+// function reload app after save/delete
+const reload = () => {
+  setTimeout(function () {
+    location.reload();
+  }, 1000);
+};
+
+// function to modifies saved note
 const saveEditedNote = (idUpdatedNote, updatedNote) => {
   const trips = getSavedTrips();
   const updatedTrips = trips.map((trip) => {
@@ -265,14 +197,12 @@ const saveEditedNote = (idUpdatedNote, updatedNote) => {
 export {
   takeDate,
   generateWeatherForecast,
-  getCountryInfo,
-  getCovidInfo,
   analysingCovidData,
-  getAirportInfo,
   getFlightInfo,
   getSavedTrips,
   saveTrip,
   removeSavedTrip,
   reset,
+  reload,
   saveEditedNote,
 };

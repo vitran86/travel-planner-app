@@ -20,12 +20,6 @@ function setUpEvent() {
           const appBody = document.querySelector(".app-body");
           const heroBox = generateDOM(data);
           appBody.append(heroBox);
-
-          //reset value in search boxes
-          document.querySelector("#departure-date").value = "";
-          document.querySelector("#arrival-date").value = "";
-          document.querySelector("#dep-city-name").value = "";
-          document.querySelector("#arr-city-name").value = "";
         })
         .catch((error) => {
           console.log(`Error: ${error}`);
