@@ -79,10 +79,12 @@ svg {
 
 @media screen and (min-width: 600px) {
   .app-body {
-    width: 100%;
+    width: 90%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    grid-gap: 6px;
+    justify-items: center;
+    align-items: center;
   }
 
   .hero-box {
@@ -91,10 +93,6 @@ svg {
 }
 
 @media screen and (min-width: 960px) {
-  .info-box {
-    flex-direction: column;
-    justify-content: space-around;
-  }
 }
 
 @media screen and (min-width: 1024px) {

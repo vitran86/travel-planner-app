@@ -46,236 +46,38 @@
             />
           </div>
         </div>
-
-        <button type="submit" id="add-btn">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-          >
-            <path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" />
-          </svg>
-          Add trip
-        </button>
-        <button type="submit" id="reset-btn">
-          <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M5.662 23l-5.369-5.365c-.195-.195-.293-.45-.293-.707 0-.256.098-.512.293-.707l14.929-14.928c.195-.194.451-.293.707-.293.255 0 .512.099.707.293l7.071 7.073c.196.195.293.451.293.708 0 .256-.097.511-.293.707l-11.216 11.219h5.514v2h-12.343zm3.657-2l-5.486-5.486-1.419 1.414 4.076 4.072h2.829zm.456-11.429l-4.528 4.528 5.658 5.659 4.527-4.53-5.657-5.657z"/></svg>
-           Reset
-        </button>
+        <div class="process-btn">
+          <button type="submit" id="add-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+            >
+              <path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" />
+            </svg>
+            Add trip
+          </button>
+          <button type="submit" id="reset-btn">
+            <svg
+              width="22"
+              height="22"
+              xmlns="http://www.w3.org/2000/svg"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+            >
+              <path
+                d="M5.662 23l-5.369-5.365c-.195-.195-.293-.45-.293-.707 0-.256.098-.512.293-.707l14.929-14.928c.195-.194.451-.293.707-.293.255 0 .512.099.707.293l7.071 7.073c.196.195.293.451.293.708 0 .256-.097.511-.293.707l-11.216 11.219h5.514v2h-12.343zm3.657-2l-5.486-5.486-1.419 1.414 4.076 4.072h2.829zm.456-11.429l-4.528 4.528 5.658 5.659 4.527-4.53-5.657-5.657z"
+              />
+            </svg>
+            Delete All
+          </button>
+        </div>
+        <br>
+        <div class="error-msg"></div>
       </div>
 
-      <div class="app-body">
-        <!-- <div class="hero-box">
-          <div class="container">
-            <div class="location">
-              <div class="trip-to">
-                <span id="city"></span> , <span id="countryName"></span>
-              </div>
-              <div id="start-date"></div>
-              <div id="end-date"></div>
-            </div>
-            <div class="country-card">
-              <img id="city-pic" />
-              <button type="button" class="country-info-btn">
-                Country Info
-              </button>
-
-              <div class="country-info">
-                <p>
-                  <span class="country-name1"></span>, a country which has
-                  <span class="area"></span> million square kilometers (km²)
-                  land area with population of
-                  <span class="population"></span> million people. Their capital
-                  is <span class="capital"></span>. Main language here is
-                  <span class="language"></span>. Currency is
-                  <span class="currency-code"></span>(<span
-                    class="currency-name"
-                  ></span
-                  >).
-                </p>
-              </div>
-
-              <button type="button" class="count-down-btn">
-                Trip count down
-              </button>
-              <div class="day-count">
-                <p>
-                  Trip to <span id="tripName"></span> is
-                  <span id="calc-day"></span> days away.
-                </p>
-              </div>
-
-              <button type="button" class="covid-info-btn">
-                Covid-19 Info
-              </button>
-              <div class="covid19-info">
-                <p>
-                  <span class="country-name2"></span> is a country has
-                  <span class="covid-level"></span> level of COVID-19.(Currently
-                  active case is <span class="active-case"></span>. Last updated
-                  is at <span class="last-update"></span>). Get more specific
-                  Infomation
-                  <a
-                    href="https://travel.state.gov/content/travel/en/traveladvisories/COVID-19-Country-Specific-Information.html"
-                    >here</a
-                  >
-                </p>
-              </div>
-
-              <button type="submit" id="weather-detail">
-                Get weather Forecast
-              </button>
-              <br />
-              <div class="weather-forecast">
-                <h3>Weather forecast in next 16 days</h3>
-                <ul id="weather"></ul>
-              </div>
-              <button type="submit" class="get-flight-btn">Flight Info</button>
-              <div class="flight-info">
-                <h3>Direct flight info</h3>
-                <p>(auto detected by nearest airport)</p>
-                <div class="departure-info">
-                  <div>
-                    From <span class="departure-airport-code">SGN</span>(
-                    <span class="departure-airport-name">TSN AIRPORT</span>)
-                  </div>
-                  <div class="departure-country"></div>
-                </div>
-                <div class="arrival-info">
-                  <div>
-                    To <span class="arrival-airport-code">NRT</span>(
-                    <span class="arrival-airport-name">NARITA AIRPORT</span>)
-                  </div>
-                  <div class="arrival-country"></div>
-                </div>
-
-                <ul id="flight"></ul>
-              </div>
-            </div>
-
-            <div>
-              <button type="submit" id="add-note">Add Note</button>
-              <textarea
-                id="note"
-                rows="10"
-                cols="50"
-                placeholder="Add note here..."
-              ></textarea>
-            </div>
-            <div class="end-card-btn">
-              <button type="submit" id="save-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" />
-                </svg>
-                Save trip
-              </button>
-              <button type="submit" id="delete-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M0 10h24v4h-24z" />
-                </svg>
-                Remove trip
-              </button>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- trip template 
-        <div class="hero-box">
-          <div class="container">
-            <div class="location">
-              <div class="trip-to"></div>
-              <div id="start-date"></div>
-              <div id="end-date"></div>
-            </div>
-            <div class="country-card">
-              <img id="city-pic" />
-              <button type="button" class="country-info-btn">
-                Country Info
-              </button>
-
-              <div class="country-info"></div>
-
-              <button type="button" class="count-down-btn">
-                Trip count down
-              </button>
-              <div class="day-count">
-                <p>
-                  Trip to <span id="tripName"></span> is
-                  <span id="calc-day"></span> days away.
-                </p>
-              </div>
-
-              <button type="button" class="covid-info-btn">
-                Covid-19 Info
-              </button>
-              <div class="covid19-info"></div>
-
-              <button type="submit" id="weather-detail">
-                Get weather Forecast
-              </button>
-              <div class="weather-forecast">
-                <h3>Weather forecast in next 16 days</h3>
-                <ul id="weather"></ul>
-              </div>
-
-              <button type="submit" class="get-flight-btn">Flight Info</button>
-              <div class="flight-info">
-                <h3>Direct flight info</h3>
-                <p>(auto detected by nearest airport)</p>
-                <div class="departure-info"></div>
-                <div class="arrival-info"></div>
-                <ul id="flight"></ul>
-              </div>
-            </div>
-
-            <div>
-              <button type="submit" id="add-note">Add Note</button>
-              <div class="note">
-                <textarea
-                  class="note"
-                  rows="10"
-                  cols="50"
-                  placeholder="Add note here..."
-                ></textarea>
-              </div>
-            </div>
-            <div class="end-card-btn">
-              <button type="submit" id="save-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" />
-                </svg>
-                Save trip
-              </button>
-              <button type="submit" id="delete-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M0 10h24v4h-24z" />
-                </svg>
-                Remove trip
-              </button>
-            </div>
-          </div>
-        </div>-->
-      </div>
+      <div class="app-body"></div>
     </div>
   </body>
 </html>

@@ -4,31 +4,50 @@
   align-items: center;
 }
 
+.error-msg {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: red;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  text-align: center;
+}
+
 @media screen and (min-width: 600px) {
 }
 
 @media screen and (min-width: 960px) {
   .info-box {
-    flex-direction: row;
-    justify-content: flex-start;
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .date-input,
+    .city-input,
+    .process-btn {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 80%;
+    }
+
+    .process-btn {
+      margin-left: 16px;
+      width: 30%;
+    }
+
+    .error-msg {
+      width: 550px;
+    }
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .date-input,
-  .city-input {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-  }
-
-  .city-input {
-    min-width: 600px;
-  }
-
-  #add-btn {
-    justify-content: center;
-    align-self: center;
+  .info-box {
+    .date-input,
+    .city-input {
+      width: 70%;
+    }
   }
 }

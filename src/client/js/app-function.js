@@ -1,5 +1,3 @@
-import { displaySavedTrips } from "./displaySavedTrips";
-
 // Create a new date instance dynamically with JS
 function takeDate(input) {
   let newDate = "";
