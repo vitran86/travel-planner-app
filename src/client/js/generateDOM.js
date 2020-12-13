@@ -1,12 +1,11 @@
-import { relativeTimeRounding } from "moment";
 import { v4 as uuidv4 } from "uuid";
 import { getSavedTrips, removeSavedTrip, reload } from "./app-function";
-import { trialDisplayTripInfo } from "./updateUI";
+import { displayTripInfo } from "./updateUI";
 
 // create function generate DOM for saved trips
 
 const generateDOM = (data) => {
-  const obj = trialDisplayTripInfo(data);
+  const obj = displayTripInfo(data);
 
   const heroBox = document.createElement("div");
   heroBox.classList.add("hero-box");

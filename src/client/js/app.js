@@ -1,13 +1,20 @@
 console.log(`This file was created by Vi.`);
 
-import { setUpDateInput, sendErrorMsg } from "./innitialSetup";
+import {
+  setUpDateInput,
+  sendErrorMsg,
+  startClick,
+  getBackground,
+} from "./innitialSetup";
 import { postDataToServer } from "./api";
 import { displaySavedTrips } from "./displaySavedTrips";
 import { generateDOM } from "./generateDOM";
-import { reload } from "./app-function";
+import { reload, reset } from "./app-function";
 
 function setUpEvent() {
   document.addEventListener("DOMContentLoaded", function () {
+    getBackground();
+    startClick();
     setUpDateInput();
     displaySavedTrips();
 
@@ -20,10 +27,6 @@ function setUpEvent() {
 
       const checkError = sendErrorMsg();
       if (checkError === "Error detected") {
-        /*  const appBody = document.querySelector(".app-body");
-        appBody.style.display = "none"; */
-        /* document.getElementById("dep-city-name").innerHTML = "";
-        document.getElementById("arr-city-name").innerHTML = ""; */
         depCity = "";
         arrCity = "";
       } else {
@@ -41,6 +44,33 @@ function setUpEvent() {
         .catch((error) => {
           console.log(`Error: ${error}`);
         });
+    });
+
+    // set up for reset button
+    const resetBTn = document.getElementById("reset-btn");
+    resetBTn.addEventListener("click", (e) => {
+      const errMsg = document.querySelector(".error-msg");
+      console.log("reset btn clicked");
+
+      if (resetBTn.classList.contains("clicked")) {
+        e.target.textContent = "Delete All";
+        resetBTn.classList.remove("clicked");
+      } else {
+        e.target.textContent = " Confirm";
+        errMsg.innerHTML =
+          "Do you want to delete all saved trip(s)? Click confirm to process";
+        resetBTn.classList.add("clicked");
+      }
+      resetBTn.addEventListener("click", (e) => {
+        console.log("CONFIRMED");
+        e.target.textContent = "Deleting...";
+        setTimeout(function () {
+          resetBTn.setAttribute("disabled", "true");
+        }, 2000);
+        errMsg.innerHTML = "";
+        reset();
+        reload();
+      });
     });
   });
 }

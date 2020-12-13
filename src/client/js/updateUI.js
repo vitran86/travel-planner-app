@@ -7,7 +7,7 @@ import {
 } from "./app-function";
 
 // create function to update UI
-function trialDisplayTripInfo(data) {
+function displayTripInfo(data) {
   // update background of trip by arrival city picture
   let background = data[2].pic;
 
@@ -95,4 +95,4 @@ function trialDisplayTripInfo(data) {
   };
 }
 
-export { trialDisplayTripInfo };
+export { displayTripInfo };
