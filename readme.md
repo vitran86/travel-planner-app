@@ -2,7 +2,7 @@
 
 ## Description
 
-This app takes user's information about their trip (including departure & arrival dates, departure & arrival cities) and **display information related to those trips dynamically**.The travel information for trip includes:
+This app takes user's information about their trip (including departure & arrival dates, departure & arrival cities) and **displays information related to those trips dynamically**.The travel information for trip includes:
 
 - General information about the country of arrival city (area, population, language, currency and covid level)
 - Weather forecast in next 16 days (taken from current date)
@@ -16,9 +16,9 @@ It also allows user to **take note** for their trips. **The background of landin
 - Input departure & arrival dates, departure & arrival cities which are needed to generate trip, then click **Add Trip** to get the result.
 - The app will check your input, then display the result accordingly. The city name is not case-sensitive, but spelling is important. If the input is a bad input, the app will require user's revision for further process.
 - In the genrerated trip card, user can use all buttons to see the information related to the trip by click it. For example, clicking button **Covid-19 info** will shows data related to arrival country by evaluating the covid level, providing case number and the last updated date. Feel free to explore all functions by yourself.
-- If you need to take note, click **Add note**. The taken note can be revise (edit) later when you save the trip.
+- If you need to take note, click **Add note**. The taken note can be revise (edit) after you save the trip.
 - Click **Save trip** when you want to keep it, or **Remove trip** if you don't need it. For finding trip, please note that **all saved trips are automatically sorted by departure date**, **new generated trip (not save yet) is after saved trip(s)**.
-- For saved trips, you can edit taken note as many times as needed, delete trip when done or in case change plan.
+- For saved trips, user can edit note as many times as needed, delete trip when done or in case user change plan.
 
 ## Prerequisite
 
