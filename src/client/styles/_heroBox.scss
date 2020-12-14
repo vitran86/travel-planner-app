@@ -214,7 +214,8 @@ h3 {
 
     .flight-detail {
       .airline {
-        max-width: 200px;
+        align-self: flex-start;
+        max-width: 100px;
       }
       .flight-number {
         max-width: 80px;

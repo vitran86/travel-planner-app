@@ -26,7 +26,7 @@ const sendErrorMsg = () => {
   const today = new Date().toISOString().slice(0, 10);
 
   if (departDate < today || arriveDate < today) {
-    errMsg.innerHTML = `!!!ERROR!!!Input date can not before current date!`;
+    errMsg.innerHTML = `!!!ERROR!!! Input date can not before current date!`;
     return msg;
   }
 
@@ -34,7 +34,7 @@ const sendErrorMsg = () => {
   const startDay = moment(new Date(departDate));
   const endDay = moment(new Date(arriveDate));
   const daysDiff = endDay.diff(startDay, "day");
-  console.log(daysDiff);
+  /* console.log(daysDiff); */
 
   if (daysDiff < 0) {
     errMsg.innerHTML = `!!!ERROR!!!Arrival date can not before departure date!`;
@@ -77,27 +77,22 @@ function getBackground() {
   const month = new Date().getMonth() + 1;
   /* console.log(month); */
   const backgroundApp = document.querySelector(".background-app");
+  backgroundApp.style.backgroundRepeat = "no-repeated";
+  backgroundApp.style.backgroundPosition = "center";
 
   if (month >= 10) {
     backgroundApp.style.background = `url(${myWinter})`;
     backgroundApp.style.BackgoundSize = "contain";
-    backgroundApp.style.backgroundRepeat = "no-repeated";
-    backgroundApp.style.backgroundPosition = "center";
+    /* backgroundApp.style.backgroundPosition = "bottom"; */
   } else if (month >= 7) {
     backgroundApp.style.background = `url(${myAutumn})`;
     backgroundApp.style.backgroundSize = "contain";
-    backgroundApp.style.backgroundRepeat = "no-repeated";
-    backgroundApp.style.backgroundPosition = "center";
   } else if (month >= 4) {
     backgroundApp.style.background = `url(${mySummer})`;
     backgroundApp.style.backgroundSize = "cover";
-    backgroundApp.style.backgroundRepeat = "no-repeated";
-    backgroundApp.style.backgroundPosition = "center";
   } else {
     backgroundApp.style.background = `url(${mySpring})`;
     backgroundApp.style.backgroundSize = "cover";
-    backgroundApp.style.backgroundRepeat = "no-repeated";
-    backgroundApp.style.backgroundPosition = "center";
   }
 }
 export { setUpDateInput, sendErrorMsg, startClick, getBackground };

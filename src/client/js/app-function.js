@@ -140,9 +140,7 @@ const getSavedTrips = () => {
 };
 
 // save trip to big Data Trips
-const saveTrip = () => {
-  const trips = getSavedTrips();
-  console.log(trips);
+const saveTrip = (trips) => {
   localStorage.setItem("trips", JSON.stringify(trips));
 };
 
@@ -170,7 +168,9 @@ const reset = () => {
 const reload = () => {
   setTimeout(function () {
     location.reload();
-  }, 1000);
+  }, 2000);
+  const backgroundApp = document.querySelector(".background-app");
+  backgroundApp.classList.add("hide");
 };
 
 // function to modifies saved note
@@ -192,6 +192,16 @@ const saveEditedNote = (idUpdatedNote, updatedNote) => {
 
 // filter trips
 
+const sortTrips = (trips) => {
+  const sortedTrips = trips.sort((a, b) => {
+    if (a.depDate < b.depDate) {
+      return -1;
+    } else if (b.depDate < a.depDate) {
+      return 1;
+    } else return 0;
+  });
+};
+
 export {
   takeDate,
   generateWeatherForecast,
@@ -203,4 +213,5 @@ export {
   reset,
   reload,
   saveEditedNote,
+  sortTrips,
 };

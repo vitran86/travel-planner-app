@@ -1,46 +1,69 @@
-# EVALUATE NEWS ARTICLE WITH NATURAL LANGUAGE PROCESSING (NLP)
+# TRAVEL PLANNER APPLICATION
 
 ## Description
 
-This app uses MeaningCloud API service to run NLP and scan **a content at an URL** or **a text / paragraph** which is input by user and display result dynamically. This NLP will analyse and find whether the content/text is :
+This app takes user's information about their trip (including departure & arrival dates, departure & arrival cities) and **display information related to those trips dynamically**.The travel information for trip includes:
 
-- Subjective (opinion) or Objective (fact-based) and does has Ironic or not,
-- Positive, Neutral, Negative or No sentiment in tone,
-- Does has polarity between the sentiments detected in the content/text, and
-- Give the confidence associated with the sentiment analysis performed on the text in the 0-100 range.
+- General information about the country of arrival city (area, population, language, currency and covid level)
+- Weather forecast in next 16 days (taken from current date)
+- Trip count down ( from current date to departure date)
+- Direct flight detected from the nearest airport of departure city to the nearest airport of arrival city.
+
+It also allows user to **take note** for their trips. **The background of landing page is automatically updated according to 4 seasons during year**.
 
 ## Instruction for using App
 
-- Input the URL or a text / paragraph which is needed to be analysed in the input box, then click submit your input.
-- The app will check your input whether it's a valid URL or a text, then display the result accordingly.
-- If the input is an invalid URL, the app require user's revision or confirmation for further process.
+- Input departure & arrival dates, departure & arrival cities which are needed to generate trip, then click **Add Trip** to get the result.
+- The app will check your input, then display the result accordingly. The city name is not case-sensitive, but spelling is important. If the input is a bad input, the app will require user's revision for further process.
+- In the genrerated trip card, user can use all buttons to see the information related to the trip by click it. For example, clicking button **Covid-19 info** will shows data related to arrival country by evaluating the covid level, providing case number and the last updated date. Feel free to explore all functions by yourself.
+- If you need to take note, click **Add note**. The taken note can be revise (edit) later when you save the trip.
+- Click **Save trip** when you want to keep it, or **Remove trip** if you don't need it. For finding trip, please note that **all saved trips are automatically sorted by departure date**, **new generated trip (not save yet) is after saved trip(s)**.
+- For saved trips, you can edit taken note as many times as needed, delete trip when done or in case change plan.
 
 ## Prerequisite
 
-This app uses **Node** to run local server and require a **Sentiment Analysic API key of [MeaningCloud](https://www.meaningcloud.com/)** to fetch data.
+This app uses **Node** to run local server and require below API Keys to fetch data:
+
+- **API key of [GeoNames](https://www.geonames.org/export/web-services.html)**
+- **API key of [Weatherbit](https://www.weatherbit.io/api)**
+- **API key of [Pixabay](https://pixabay.com/api/docs/)**
+- **API key of [AirLabs](http://airlabs.co/#/get_started)**
+- **API key of [aviationstack](https://aviationstack.com/documentation)**
+
+Beside that, this app also use API of
 
 ## Installation
 
 ### Run local server:
 
-- Once the project is cloned, in the Node terminal of root folder EVALUATE-NEWS-NLP, run the command:
+- Once the project is cloned, in the Node terminal of root folder, run the command:
 
 `npm run start`
 
-### Signup for an API key
+### Signup for API keys
 
-The sign-up page is [here](https://www.meaningcloud.com/developer/login). Note that this project uses **Sentiment Analysic API**
+The sign-up pages are as below:
+
+- **[GeoNames](http://www.geonames.org/login)**
+- **[Weatherbit](https://www.weatherbit.io/account/create)**
+- **[Pixabay](https://pixabay.com/accounts/login/?source=main_nav&next=/api/docs/)**
+- **[AirLabs](http://airlabs.co/#/free_access)**
+- **[aviationstack](https://aviationstack.com/signup)**
 
 ### Create Environment file
 
 - Create a new `.env` file in the root of of project
 - Fill the `.env` file with your API key like this:
 
-`API_KEY (your key)=************************** `
+`USER_NAME_GEO={your user name} `
+`WEATHERBIT_KEY={your key} `
+`PIXABAY_KEY={your key} `
+`AIRLAB_KEY={your key} `
+`AVIATION_KEY={your key} `
 
 ### Run scripts
 
 All available Scripts of this project are declared in package.json, includes :
 
-- `npm run build-dev` : to run the app in the development mode, automatically opening http://localhost:8080 in the browser.
+- `npm run build-dev` : to run the app in the development mode, automatically opening http://localhost:8000 in the browser.
 - `npm run build` : build the app for production to the `dist` folder.

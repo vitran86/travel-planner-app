@@ -59,11 +59,21 @@ function displayTripInfo(data) {
   }
 
   //get Flight info
+
   let depAirportCode = data[5].airportCodeByDepCity.code;
   let depAirportName = data[5].airportCodeByDepCity.name;
   let depCountry = data[5].airportCodeByDepCity.country_name;
-  let arrAirportCode = data[5].airportCodeByArrCity.code;
-  let arrAirportName = data[5].airportCodeByArrCity.name;
+  let arrAirportCode = "";
+  let arrAirportName = "";
+
+  if (data[5].airportCodeByArrCity.code) {
+    arrAirportCode = data[5].airportCodeByArrCity.code;
+    arrAirportName = data[5].airportCodeByArrCity.name;
+  } else {
+    arrAirportCode = "Can't find airport";
+    arrAirportName = "Error data";
+  }
+
   let generatedFlightItems = getFlightInfo(depAirportCode, data[6]);
 
   return {

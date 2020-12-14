@@ -19,12 +19,13 @@ function setUpEvent() {
     displaySavedTrips();
 
     // set up for add trip button
-    document.getElementById("add-btn").addEventListener("click", () => {
+    document.getElementById("add-btn").addEventListener("click", (e) => {
       let depCity = document.getElementById("dep-city-name").value.trim();
       let arrCity = document.getElementById("arr-city-name").value.trim();
       let depDate = document.getElementById("departure-date").value;
       console.log(`Trip is from ${depCity} to ${arrCity}, date ${depDate} `);
 
+      // check error of user's input if any
       const checkError = sendErrorMsg();
       if (checkError === "Error detected") {
         depCity = "";
@@ -34,7 +35,7 @@ function setUpEvent() {
         errMsg.style.display = "none";
       }
 
-      //start to fetch data from server, then display it
+      //if there's no error in input, app start to fetch data from server, then display it
       postDataToServer(depCity, arrCity)
         .then((data) => {
           const appBody = document.querySelector(".app-body");
@@ -58,12 +59,13 @@ function setUpEvent() {
       } else {
         e.target.textContent = " Confirm";
         errMsg.innerHTML =
-          "Do you want to delete all saved trip(s)? Click confirm to process";
+          "You want to reset this application, please click confirm to process! All yor saved trip(s) will be deleted and can't retrieved after reset.";
         resetBTn.classList.add("clicked");
       }
       resetBTn.addEventListener("click", (e) => {
         console.log("CONFIRMED");
         e.target.textContent = "Deleting...";
+
         setTimeout(function () {
           resetBTn.setAttribute("disabled", "true");
         }, 2000);

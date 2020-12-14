@@ -5,20 +5,19 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
 }
 
 // set up function to call API by POST method to server
-const postDataToServer = async (depCity, arrCity, flightDate) => {
+const postDataToServer = async (depCity, arrCity) => {
   const result = await fetch(`${serverURL}/addTrip`, {
     method: "POST",
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
-      // "Content-Type": "text/plain",
     },
     body: JSON.stringify({
       depCity: depCity,
       arrCity: arrCity,
-      flightDate: flightDate,
     }),
   });
+
   if (result.status === 200) {
     const data = await result.json();
     console.log(data);
