@@ -30,7 +30,11 @@ This app uses **Node** to run local server and require below API Keys to fetch d
 - **API key of [AirLabs](http://airlabs.co/#/get_started)**
 - **API key of [aviationstack](https://aviationstack.com/documentation)**
 
-Beside that, this app also use API of
+Beside that, this app also use data from APIs of
+
+- **[Rest Countries](https://restcountries.eu/)**
+  and **[Covid-19 API](https://documenter.getpostman.com/view/10877427/SzYW2f8n?version=latest)**
+  (These APIs do not require key)
 
 ## Installation
 
@@ -55,11 +59,11 @@ The sign-up pages are as below:
 - Create a new `.env` file in the root of of project
 - Fill the `.env` file with your API key like this:
 
-`USER_NAME_GEO={your user name} `
-`WEATHERBIT_KEY={your key} `
-`PIXABAY_KEY={your key} `
-`AIRLAB_KEY={your key} `
-`AVIATION_KEY={your key} `
+1. `USER_NAME_GEO={your user name} `
+2. `WEATHERBIT_KEY={your key} `
+3. `PIXABAY_KEY={your key} `
+4. `AIRLAB_KEY={your key} `
+5. `AVIATION_KEY={your key} `
 
 ### Run scripts
 
