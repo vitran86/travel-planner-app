@@ -1,5 +1,5 @@
 import moment from "moment";
-import { displayTripInfo } from "./updateUI";
+import { updateUI } from "./updateUI";
 import {
   takeDate,
   getSavedTrips,
@@ -19,7 +19,7 @@ function displaySavedTrips() {
 }
 
 const generateDOMSavedTrips = (trip) => {
-  const obj = displayTripInfo(trip.data);
+  const obj = updateUI(trip.data);
 
   const heroBoxSavedTrip = document.createElement("div");
   heroBoxSavedTrip.classList.add("hero-box");

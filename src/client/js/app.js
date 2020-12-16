@@ -42,6 +42,9 @@ function setUpEvent() {
           appBody.append(heroBox);
         })
         .catch((error) => {
+          const errMsg = document.querySelector(".error-msg");
+          errMsg.style.display = "block";
+          errMsg.innerHTML = "Unable to get data due to bad input!";
           console.log(`Error: ${error}`);
         });
     });

@@ -4,6 +4,29 @@ import mySummer from "../images/pic/summer.jpg";
 import myAutumn from "../images/pic/fall.jpg";
 import myWinter from "../images/pic/winter.jpg";
 
+function getBackground() {
+  const month = new Date().getMonth() + 1;
+  /* console.log(month); */
+  const backgroundApp = document.querySelector(".background-app");
+  backgroundApp.style.backgroundRepeat = "no-repeated";
+  backgroundApp.style.backgroundPosition = "center";
+
+  if (month >= 10) {
+    backgroundApp.style.background = `url(${myWinter})`;
+    backgroundApp.style.BackgoundSize = "contain";
+    /* backgroundApp.style.backgroundPosition = "bottom"; */
+  } else if (month >= 7) {
+    backgroundApp.style.background = `url(${myAutumn})`;
+    backgroundApp.style.backgroundSize = "contain";
+  } else if (month >= 4) {
+    backgroundApp.style.background = `url(${mySummer})`;
+    backgroundApp.style.backgroundSize = "cover";
+  } else {
+    backgroundApp.style.background = `url(${mySpring})`;
+    backgroundApp.style.backgroundSize = "cover";
+  }
+}
+
 // for user can't choose the date in the past
 const setUpDateInput = () => {
   const depDate = document.getElementById("departure-date");
@@ -34,7 +57,6 @@ const sendErrorMsg = () => {
   const startDay = moment(new Date(departDate));
   const endDay = moment(new Date(arriveDate));
   const daysDiff = endDay.diff(startDay, "day");
-  /* console.log(daysDiff); */
 
   if (daysDiff < 0) {
     errMsg.innerHTML = `!!!ERROR!!!Arrival date can not before departure date!`;
@@ -56,6 +78,15 @@ const sendErrorMsg = () => {
     errMsg.innerHTML = `Please provide arrival city for process! `;
     return msg;
   }
+  console.log(depCity === arrCity);
+  console.log(depCity);
+  console.log(arrCity);
+
+  // check if departure City is as same as arrival city
+  if (depCity === arrCity) {
+    errMsg.innerHTML = `Oops! Departure city is as same as arrival city.`;
+    return msg;
+  }
 };
 
 function startClick() {
@@ -73,26 +104,4 @@ function startClick() {
   });
 }
 
-function getBackground() {
-  const month = new Date().getMonth() + 1;
-  /* console.log(month); */
-  const backgroundApp = document.querySelector(".background-app");
-  backgroundApp.style.backgroundRepeat = "no-repeated";
-  backgroundApp.style.backgroundPosition = "center";
-
-  if (month >= 10) {
-    backgroundApp.style.background = `url(${myWinter})`;
-    backgroundApp.style.BackgoundSize = "contain";
-    /* backgroundApp.style.backgroundPosition = "bottom"; */
-  } else if (month >= 7) {
-    backgroundApp.style.background = `url(${myAutumn})`;
-    backgroundApp.style.backgroundSize = "contain";
-  } else if (month >= 4) {
-    backgroundApp.style.background = `url(${mySummer})`;
-    backgroundApp.style.backgroundSize = "cover";
-  } else {
-    backgroundApp.style.background = `url(${mySpring})`;
-    backgroundApp.style.backgroundSize = "cover";
-  }
-}
 export { setUpDateInput, sendErrorMsg, startClick, getBackground };

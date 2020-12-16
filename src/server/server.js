@@ -59,7 +59,7 @@ function listening() {
 // GET route:
 
 app.get("/allData", async (req, res) => {
-  res.send(projectData);
+  res.send(consolidatedData);
 });
 
 // POST route:
@@ -123,9 +123,9 @@ app.post("/addTrip", async (req, res) => {
   res.send(consolidatedData);
 
   try {
-    /* console.log(consolidatedData); */
     console.log(req.body);
   } catch (error) {
     console.log("error", error);
+    res.send("error", error);
   }
 });

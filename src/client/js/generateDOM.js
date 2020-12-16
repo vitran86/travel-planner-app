@@ -6,12 +6,12 @@ import {
   sortTrips,
   saveTrip,
 } from "./app-function";
-import { displayTripInfo } from "./updateUI";
+import { updateUI } from "./updateUI";
 
 // create function generate DOM for saved trips
 
 const generateDOM = (data) => {
-  const obj = displayTripInfo(data);
+  const obj = updateUI(data);
 
   const heroBox = document.createElement("div");
   heroBox.classList.add("hero-box");
