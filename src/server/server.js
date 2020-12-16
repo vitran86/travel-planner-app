@@ -114,8 +114,8 @@ app.post("/addTrip", async (req, res) => {
     airportCodeByDepCity,
   });
 
-  /* const flightInfo = await getFlightInfo(airportCodeByArrCity.code);
-  consolidatedData.push(flightInfo); */
+  const flightInfo = await getFlightInfo(airportCodeByArrCity.code);
+  consolidatedData.push(flightInfo);
 
   const flightInfo = [];
   consolidatedData.push(flightInfo);
@@ -126,6 +126,5 @@ app.post("/addTrip", async (req, res) => {
     console.log(req.body);
   } catch (error) {
     console.log("error", error);
-    res.send("error", error);
   }
 });
