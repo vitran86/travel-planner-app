@@ -20,7 +20,7 @@ const postDataToServer = async (depCity, arrCity) => {
 
   if (result.status === 200) {
     const data = await result.json();
-    console.log(data);
+
     return data;
   } else {
     throw new Error(`Unable to fetch data`);

@@ -23,7 +23,6 @@ function setUpEvent() {
       let depCity = document.getElementById("dep-city-name").value.trim();
       let arrCity = document.getElementById("arr-city-name").value.trim();
       let depDate = document.getElementById("departure-date").value;
-      console.log(`Trip is from ${depCity} to ${arrCity}, date ${depDate} `);
 
       // check error of user's input if any
       const checkError = sendErrorMsg();

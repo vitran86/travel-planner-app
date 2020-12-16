@@ -50,7 +50,7 @@ const generateDOMSavedTrips = (trip) => {
   endDate.classList.add("end-date");
   endDate.innerHTML = `Arrival: ${takeDate(trip.arrDate)}`;
   location.appendChild(endDate);
-  /* console.log(location); */
+
   // country card
   const card = document.createElement("div");
   card.classList.add("country-card");
@@ -62,7 +62,6 @@ const generateDOMSavedTrips = (trip) => {
   cardImg.setAttribute("src", `${obj.cardImgEL}`);
   cardImg.setAttribute("alt", `${obj.description}`);
   card.appendChild(cardImg);
-  /* console.log(cardImg); */
 
   // ** country info **//
   const countryInfo = document.createElement("div");
@@ -75,7 +74,6 @@ const generateDOMSavedTrips = (trip) => {
     ${obj.languageEL}. Currency is
     ${obj.currencyCodeEL}(${obj.currencyNameEL})`;
   card.appendChild(countryInfo);
-  /*  console.log(countryInfo); */
 
   const countryInfoBtn = document.createElement("button");
   countryInfoBtn.classList.add("country-info-btn");
@@ -110,7 +108,6 @@ const generateDOMSavedTrips = (trip) => {
     is at ${obj.lastUpdate}.`;
 
   card.appendChild(covidInfo);
-  /* console.log(covidInfo); */
 
   const covidInfoBtn = document.createElement("button");
   covidInfoBtn.classList.add("covid-info-btn");
@@ -144,7 +141,6 @@ const generateDOMSavedTrips = (trip) => {
   let daysLeftEL = startDay.diff(today, "day") + 1;
   dayCount.innerHTML = `${obj.arrCityEL} is ${daysLeftEL} days away.`;
   card.appendChild(dayCount);
-  /* console.log(dayCount); */
 
   const tripCountDownBtn = document.createElement("button");
   tripCountDownBtn.classList.add("count-down-btn");
@@ -179,7 +175,6 @@ const generateDOMSavedTrips = (trip) => {
 
   weatherForecast.append(obj.generatedWeatherItems);
   card.append(weatherForecast);
-  /* console.log(weatherForecast); */
 
   const weatherForecastBtn = document.createElement("button");
   weatherForecastBtn.setAttribute("id", "weather-detail");
@@ -232,7 +227,6 @@ const generateDOMSavedTrips = (trip) => {
 
   flightInfo.append(obj.generatedFlightItems);
   card.append(flightInfo);
-  /* console.log(flightInfo); */
 
   const flightBtn = document.createElement("button");
   flightBtn.classList.add("get-flight-btn");

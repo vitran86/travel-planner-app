@@ -84,6 +84,7 @@ app.post("/addTrip", async (req, res) => {
 
   const geoArrData = await getGeoData(arrCity);
   const geoDepData = await getGeoData(depCity);
+
   consolidatedData.push({
     arrCityName: geoArrData.cityName,
     arrCountryName: geoArrData.countryName,
@@ -113,12 +114,12 @@ app.post("/addTrip", async (req, res) => {
     airportCodeByDepCity,
   });
 
-  const flightInfo = await getFlightInfo(airportCodeByArrCity.code);
+  /* const flightInfo = await getFlightInfo(airportCodeByArrCity.code);
+  consolidatedData.push(flightInfo); */
+
+  const flightInfo = [];
   consolidatedData.push(flightInfo);
 
-  /* const flightInfo = [];
-  consolidatedData.push(flightInfo);
- */
   res.send(consolidatedData);
 
   try {

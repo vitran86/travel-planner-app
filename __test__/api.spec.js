@@ -12,7 +12,6 @@ describe("test postDataToServer", () => {
     //run function
 
     let result = await postDataToServer(depCity, arrCity);
-    console.log(result);
 
     //output
     expect(result.length).toBe(7);

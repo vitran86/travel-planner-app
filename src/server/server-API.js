@@ -8,6 +8,7 @@ async function getGeoData(city) {
     `${geoURL}q=${city}&maxRows=1&username=${process.env.USER_NAME_GEO}`,
     {}
   );
+
   if (response1.status === 200) {
     const data = await response1.json();
 
@@ -18,7 +19,7 @@ async function getGeoData(city) {
       countryName: data.geonames[0].countryName,
       countryCode: data.geonames[0].countryCode,
     };
-    console.log(geo);
+    console.log("geoData", geo);
     return geo;
   } else {
     throw new Error(`Unable to fetch data`);
@@ -37,6 +38,7 @@ async function getWeather(lat, lon) {
 
   if (response2.status === 200) {
     const weatherData = await response2.json();
+
     weatherData.data.forEach((objectData) => {
       weatherForecast.push({
         forecastDate: objectData.valid_date,

@@ -41,8 +41,8 @@ function generateWeatherForecast(data) {
   // weather icon
   const weatherIcon = document.createElement("img");
   const icon = data.icon;
-  const iconURL = require(`../images/weather-icon-png/${icon}.png`);
-  weatherIcon.setAttribute("src", `${iconURL}`);
+  const iconURL = require(`../images/weather-icon-png/${icon}.png`).default;
+  weatherIcon.setAttribute("src", iconURL);
   weatherIcon.setAttribute("class", "forecast-icon");
   newForecast.appendChild(weatherIcon);
 
@@ -169,8 +169,8 @@ const reload = () => {
   setTimeout(function () {
     location.reload();
   }, 2000);
-  const backgroundApp = document.querySelector(".background-app");
-  backgroundApp.classList.add("hide");
+  /* const backgroundApp = document.querySelector(".background-app");
+  backgroundApp.classList.add("hide"); */
 };
 
 // function to modifies saved note
